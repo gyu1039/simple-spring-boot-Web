@@ -53,9 +53,11 @@ public class BoardController {
     }
 
     @GetMapping("/read")
-    public void read(@RequestParam("bno") int bno, Model model) throws Exception{
+    public String read(@RequestParam("bno") int bno, Model model) throws Exception{
 
         model.addAttribute(service.read(bno));
+
+        return "/board/read";
     }
 
 }

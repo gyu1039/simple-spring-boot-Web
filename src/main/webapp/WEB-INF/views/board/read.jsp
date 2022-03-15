@@ -4,29 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
-$(document).read(function()) {
 
-    var formObj = ${"form[role='form']");
-
-    console.log(formObj);
-
-    ${".btn-warning").on("click", function() {
-        formObj.attr("action", "/board/modify");
-        formObj.attr("method", "get");
-        formObj.submit();
-    });
-
-    ${".btn-danger").on("click", function() {
-            formObj.attr("action", "/board/remove");
-            formObj.submit();
-        });
-
-
-    ${".btn-primary").on("click", function() {
-        self.location = "/board/listAll";
-        });
-
-}
 
 
 <%@include file="/include/header.jsp" %>
@@ -71,5 +49,29 @@ $(document).read(function()) {
         </div>
     </section>
 <%@include file="/include/footer.jsp" %>
+
+$(document).read(function()) {
+
+    var formObj = $("form[role='form']");
+
+    console.log(formObj);
+
+    $(".btn-warning").on("click", function() {
+        formObj.attr("action", "/board/modify");
+        formObj.attr("method", "get");
+        formObj.submit();
+    });
+
+    $(".btn-danger").on("click", function() {
+            formObj.attr("action", "/board/remove");
+            formObj.submit();
+    });
+
+
+    $(".btn-primary").on("click", function() {
+        self.location = "/board/listAll";
+        });
+
+}
 
 
