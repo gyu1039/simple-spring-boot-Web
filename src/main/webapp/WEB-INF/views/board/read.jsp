@@ -3,10 +3,40 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="/resources/plugins/jQueryUI/jquery-ui-1.10.3.js"></script>
+<script src="/resources/plugins/jQueryUI/jquery-ui-1.10.3.min.js"></script>
+<script>
+$(document).ready(function() {
+
+    var formObj = $("form[role='form']");
+
+    console.log(formObj);
+
+    $(".btn-warning").on("click", function() {
+        formObj.attr("action", "/board/modify");
+        formObj.attr("method", "get");
+        formObj.submit();
+    });
+
+    $(".btn-danger").on("click", function() {
+            formObj.attr("action", "/board/remove");
+            formObj.submit();
+    });
 
 
+    $(".btn-primary").on("click", function() {
+        self.location = "/board/listAll";
+    });
 
+});
+</script>
 
+<body>
 <%@include file="/include/header.jsp" %>
 
     <section class="content">
@@ -50,28 +80,7 @@
     </section>
 <%@include file="/include/footer.jsp" %>
 
-$(document).read(function()) {
-
-    var formObj = $("form[role='form']");
-
-    console.log(formObj);
-
-    $(".btn-warning").on("click", function() {
-        formObj.attr("action", "/board/modify");
-        formObj.attr("method", "get");
-        formObj.submit();
-    });
-
-    $(".btn-danger").on("click", function() {
-            formObj.attr("action", "/board/remove");
-            formObj.submit();
-    });
-
-
-    $(".btn-primary").on("click", function() {
-        self.location = "/board/listAll";
-        });
-
-}
+</body>
+</html>
 
 

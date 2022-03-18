@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
@@ -53,11 +50,39 @@ public class BoardController {
     }
 
     @GetMapping("/read")
-    public String read(@RequestParam("bno") int bno, Model model) throws Exception{
+    public String read(@RequestParam("bno") int bno, Model model) throws Exception {
 
         model.addAttribute(service.read(bno));
 
         return "/board/read";
     }
 
+    @PostMapping("/remove")
+    public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+
+        service.remove(bno);
+
+        rttr.addFlashAttribute("result", "SUCCESS");
+
+        return "redirect:/board/listAll";
+    }
+
+    @GetMapping("/modify")
+    public String modifyGET(int bno, Model model) throws Exception {
+
+        model.addAttribute(service.read(bno));
+
+        return "/board/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
+
+        logger.info("mod post...");
+
+        service.modify(board);
+        rttr.addFlashAttribute("result", "SUCCESS");
+
+        return "redirect:/board/listAll";
+    }
 }
